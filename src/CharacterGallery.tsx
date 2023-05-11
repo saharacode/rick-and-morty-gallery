@@ -1,15 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CharacterCard from "./CharacterCard";
 import {Character} from "./Character";
 import './CharacterGallery.css'
-
-type Props = {
-    characters:Character[]
-}
+import axios from "axios";
 
 
-export default function CharacterGallery(props:Props) {
+export default function CharacterGallery() {
+    const [characters, setCharacters] = useState<Character[]>([]) // save characters from api
     const [inputName,setInputName] = useState("");
+
+    useEffect(() =>{
+        getAllCharactersFromApi() // call function automatically
+    }, []) // with [] make sure that its just one time called (no infinity loop)
+
+    function getAllCharactersFromApi(){
+        axios.get("https://rickandmortyapi.com/api/character")
+            .then(response => setCharacters(response.data.results)); // save all characters from api in useState characters
+    }
 
     function useTextInput(event: React.FormEvent<HTMLInputElement>) {
         setInputName(event.currentTarget.value); // change the useState-string to the input from the textfield
@@ -17,7 +24,7 @@ export default function CharacterGallery(props:Props) {
 
     function filterCharacters() {
         // filters all characters which have the inputName included
-        return props.characters.filter((currentCharacter:Character) => {
+        return characters.filter((currentCharacter:Character) => {
             return currentCharacter.name.toLowerCase().includes(inputName.toLowerCase()); // compare words with all lowercase
         })
     }
