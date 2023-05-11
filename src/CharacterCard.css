@@ -1,0 +1,27 @@
+.order{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.frame{
+    color: black;
+    background-color: aliceblue;
+    border-style: solid;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    width: 14%;
+}
+
+#pic{
+    width: 80%;
+    border-style: solid;
+    border-radius: 20px;
+}
+
+#info{
+    text-align: left;
+}
+
