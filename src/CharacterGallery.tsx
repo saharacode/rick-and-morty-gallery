@@ -15,13 +15,21 @@ export default function CharacterGallery(props:Props) {
         setInputName(event.currentTarget.value); // change the useState-string to the input from the textfield
     }
 
+    function filterCharacters() {
+        // filters all characters which have the inputName included
+        return props.characters.filter((currentCharacter:Character) => {
+            return currentCharacter.name.toLowerCase().includes(inputName.toLowerCase()); // compare words with all lowercase
+        })
+    }
+
     return (
         <div>
             <h2>In this gallery you can see all characters from Rick and Morty:</h2>
-            <h3>Please type in the name, you are looking for:</h3>
-            <input type="text" value={inputName} onInput={useTextInput}/>
-            <p>{inputName}</p>
-            <CharacterCard characters={props.characters} ></CharacterCard>
+            <div id="window">
+                <h3>Please type in the name, you are looking for:</h3>
+                <input placeholder="Search..." type="text" value={inputName} onInput={useTextInput}/>
+            </div>
+            <CharacterCard characters={filterCharacters()} ></CharacterCard>
         </div>
     );
 }
