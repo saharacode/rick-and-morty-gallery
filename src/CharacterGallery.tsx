@@ -6,11 +6,13 @@ import useLoadCharacters from "./useLoadCharacters";
 
 
 type Props = {
-    characters: Character[]
+    characters: Character[],
+    nextPage: () => void,
+    previousPage: () => void
 }
 
 export default function CharacterGallery(props:Props) {
-    const {previousPage,nextPage} = useLoadCharacters();
+
     const [inputName,setInputName] = useState("");
 
     function useTextInput(event: React.FormEvent<HTMLInputElement>) {
@@ -32,8 +34,8 @@ export default function CharacterGallery(props:Props) {
                 <input placeholder="Search..." type="text" value={inputName} onInput={useTextInput}/>
             </div>
             <div>
-                <button onClick={previousPage}>Previous Page</button>
-                <button onClick={nextPage}>Next Page</button>
+                <button onClick={props.previousPage}>Previous Page</button>
+                <button onClick={props.nextPage}>Next Page</button>
             </div>
 
             <div className="order">

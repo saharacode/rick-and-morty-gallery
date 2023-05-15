@@ -10,7 +10,7 @@ function useLoadCharacters() {
 
     useEffect(() =>{
         getAllCharactersFromApi(initialUrl) // call function automatically
-    }, [pageCounter]) // with [] make sure that its just one time called (no infinity loop)
+    }, []) // with [] make sure that its just one time called (no infinity loop)
 
     function getAllCharactersFromApi(apiUrl:string){
         axios.get(apiUrl) // get information from url
