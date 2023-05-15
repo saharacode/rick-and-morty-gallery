@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import CharacterCard from "./CharacterCard";
 import {Character} from "./Character";
 import './CharacterGallery.css'
+import useLoadCharacters from "./useLoadCharacters";
 
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
 }
 
 export default function CharacterGallery(props:Props) {
-
+    const {previousPage,nextPage} = useLoadCharacters();
     const [inputName,setInputName] = useState("");
 
     function useTextInput(event: React.FormEvent<HTMLInputElement>) {
@@ -29,6 +30,10 @@ export default function CharacterGallery(props:Props) {
             <div id="window">
                 <h3>Please type in the name, you are looking for:</h3>
                 <input placeholder="Search..." type="text" value={inputName} onInput={useTextInput}/>
+            </div>
+            <div>
+                <button onClick={previousPage}>Previous Page</button>
+                <button onClick={nextPage}>Next Page</button>
             </div>
 
             <div className="order">
