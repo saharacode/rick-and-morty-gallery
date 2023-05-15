@@ -61,7 +61,9 @@ export default function CharacterGallery() {
                 <button onClick={previousPage}>Previous Page</button>
                 <button onClick={nextPage}>Next Page</button>
             </div>
-            <CharacterCard characters={filterCharacters()} ></CharacterCard>
+            <div className="order">
+                {filterCharacters().map((currentCharacter:Character) => <CharacterCard currentCharacter={currentCharacter}></CharacterCard>)}
+            </div>
         </div>
     );
 }
